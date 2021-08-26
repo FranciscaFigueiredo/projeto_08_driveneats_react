@@ -125,6 +125,7 @@ header {
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
+    position: relative;
 }
 
 .preco {
@@ -140,8 +141,37 @@ header {
     border: 7px solid #32B72F;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
 
-    position: relative;
+    /* position: relative; */
 }
+
+.rodape-alimento {
+    width: 160px;
+
+    padding: 1px 10px;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.setar-quantidade {
+    z-index: 10;
+}
+
+.setar-quantidade span{
+    margin-left: 5px;
+}
+
+.setar-quantidade .diminuir-quantidade{
+    color: #ff0000;
+}
+
+.setar-quantidade span strong{
+    color: #32B72F;
+}
+
+/* .setar-quantidade strong {
+    color: #32B72F;
+} */
 
 .icone {
     position: absolute;
