@@ -33,7 +33,7 @@ const sobremesas = [
     }
 ];
 
-export default function Sobremesas() {
+export default function Sobremesas({ sobremesasSelecionados, setSobremesasSelecionados }) {
     return (
         <div class="escolher-sobremesa">
             <h2>Por fim, sua sobremesa</h2>

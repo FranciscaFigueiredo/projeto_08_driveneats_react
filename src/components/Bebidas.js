@@ -33,7 +33,7 @@ const bebidas = [
     }
 ];
 
-export default function Bebidas() {
+export default function Bebidas({ bebidasSelecionados, setBebidasSelecionados }) {
     return (
         <div class="escolher-bebida">
             <h2>Agora, sua bebida</h2>

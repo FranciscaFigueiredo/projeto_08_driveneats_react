@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 import Cardapio from "../shared/Cardapio";
 
 const pratos = [
@@ -34,11 +36,25 @@ const pratos = [
 ];
 
 export default function PratosPrincipais() {
+    const [ pratosSelecionados, setPratosSelecionados ] = useState([]);
+    console.log(pratosSelecionados);
+    function listarPedido(produto) {
+        console.log(produto);
+        console.log(pratosSelecionados);
+
+        setPratosSelecionados([...pratosSelecionados, produto]);
+    }
+
+    function removerPedido(produto) {
+        console.log(produto);
+        setPratosSelecionados(pratosSelecionados.filter((prod) => prod === produto));
+    }
+
     return (
         <div className="prato-principal">
             <h2>Primeiro, Seu prato</h2>
             <div class="cardapio">
-                {pratos.map((prato) => (<Cardapio srcImagem={prato.srcImagem} nome={prato.nome} descricao={prato.descricao} valor={prato.valor}/>))}
+                {pratos.map((prato, index) => (<Cardapio key={index} srcImagem={prato.srcImagem} nome={prato.nome} descricao={prato.descricao} valor={prato.valor} listarPedido = {listarPedido} removerPedido = {removerPedido} />))}
             </div>
         </div>
     );

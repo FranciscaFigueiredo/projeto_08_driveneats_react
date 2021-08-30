@@ -147,14 +147,13 @@ header {
 .rodape-alimento {
     width: 160px;
 
-    padding: 1px 10px;
-
     display: flex;
     justify-content: space-between;
 }
 
 .setar-quantidade {
     z-index: 10;
+    padding: 1px 10px;
 }
 
 .setar-quantidade span{
@@ -243,7 +242,6 @@ footer button {
     justify-content: center;
 
     border-radius: 10px;
-    align-items: center;
 }
 
 .card-confirmacao div {
