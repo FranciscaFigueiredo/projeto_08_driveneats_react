@@ -38,18 +38,24 @@ const sobremesas = [
 export default function Sobremesas({sobremesasPedidas, setSobremesasPedidas, habilitarBotao }) {
 
     const [ sobremesasSelecionadas, setSobremesasSelecionadas ] = useState([]);
-    console.log(sobremesasSelecionadas);
+    
     function listarPedido(produto) {
-        console.log(produto);
-        console.log(sobremesasSelecionadas);
         if (!(sobremesasSelecionadas.find((prod) => (prod.nome === produto.nome)))) {
             setSobremesasSelecionadas([...sobremesasSelecionadas, produto]);
         }
     }
 
+    function aumentarQuantidade(produto) {
+        if (sobremesasSelecionadas.find((prod) => (prod.nome === produto.nome))){
+            sobremesasSelecionadas.find((prod) => {
+                if (prod.nome === produto.nome) {
+                    prod.quant = produto.quant + 1;
+                }
+            })
+        }
+    }
+
     function removerPedido(produto) {
-        console.log(produto);
-        console.log(sobremesasSelecionadas);
         setSobremesasSelecionadas(sobremesasSelecionadas.filter((prod) => prod.nome !== produto.nome));
     }
 
@@ -64,7 +70,7 @@ export default function Sobremesas({sobremesasPedidas, setSobremesasPedidas, hab
         <div className="escolher-sobremesa">
             <h2>Por fim, sua sobremesa</h2>
             <div className="cardapio">
-                {sobremesas.map((sobremesa, index) => (<Cardapio key={index} srcImagem={sobremesa.srcImagem} nome={sobremesa.nome} descricao={sobremesa.descricao} valor={sobremesa.valor} listarPedido = {listarPedido} removerPedido = {removerPedido} />))}
+                {sobremesas.map((sobremesa, index) => (<Cardapio key={index} srcImagem={sobremesa.srcImagem} nome={sobremesa.nome} descricao={sobremesa.descricao} valor={sobremesa.valor} listarPedido = {listarPedido} removerPedido = {removerPedido} aumentarQuantidade = {aumentarQuantidade} />))}
             </div>
         </div>
         

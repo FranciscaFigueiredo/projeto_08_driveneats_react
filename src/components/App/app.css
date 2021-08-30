@@ -1,0 +1,111 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+
+    background-color: #eeeeee;
+    position: relative;
+}
+
+strong {
+    font-weight: bold;
+}
+
+h1, h2 {
+    font-family: 'Righteous', cursive;
+}
+h1 {
+    font-size: 44px;
+}
+
+h2 {
+    font-size: 26px;
+}
+
+h3 {
+    font-size: 18px;   
+}
+
+h4 {
+    font-size: 16px;
+    color: #333333;
+}
+
+h5 {
+    font-size: 15px;
+    color: #a6a6a6;
+}
+
+h4, h5, p {
+    padding: 0 10px 7px;
+}
+
+p {
+    font-size: 16px;
+    color: #000000;
+}
+
+img {
+    width: 150px;
+    height: 100px;
+
+    padding: 10px;
+
+    border-radius: 14px;
+
+    object-fit: cover;
+}
+
+header {
+    width: 100vw;
+    height: 92px;
+
+    background-color: #cf2b2b;
+
+    position: fixed;
+    top: 0;
+    left: 0; 
+    box-shadow: 1px 0 6px 0px rgba(0, 0, 0, 1.8);
+
+    z-index: 10;
+}
+
+.logo {
+    width: 95vw;
+    height: 92px;
+
+    color: #ffffff;
+
+    margin: 0 auto;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:flex-start;  
+}
+
+.prato-principal {
+    width: 95vw;
+    
+    margin: calc(2vw + 100px) auto 2vw auto;
+}
+
+.escolher-bebida{
+    width: 95vw;
+    
+    margin: 2vw auto
+}
+
+.escolher-sobremesa {
+    width: 95vw;
+    
+    margin: 2vw auto calc(2vw + 92px);
+}
+
+.cardapio {
+    display: flex;
+    overflow: hidden;
+    overflow: auto;
+}

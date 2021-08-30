@@ -1,3 +1,5 @@
+import "./rodape.css";
+
 export default function Rodape({ habilitar, fazerPedido }) {
     if (habilitar === "enable") {
         return (

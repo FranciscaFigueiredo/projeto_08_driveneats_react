@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
-export default function Cardapio({ index, srcImagem, nome, descricao, valor, listarPedido, removerPedido }) {
+import "./cardapio.css"
+
+export default function Cardapio({ index, srcImagem, nome, descricao, valor, listarPedido, removerPedido, aumentarQuantidade }) {
     const [classe, setClasse] = useState("escolher-pedido");
     const [quantidade, setQuantidade] = useState("setar-quantidade hidden");
     const [quant, setQuant] = useState(1);
@@ -34,7 +36,7 @@ export default function Cardapio({ index, srcImagem, nome, descricao, valor, lis
             <div className="rodape-alimento">
                 <p><span>R$ <span className="valor-prato">{valor}</span></span></p>
                 <div className={quantidade}>
-                    <span className="diminuir-quantidade" onClick={() => (quant > 1 ? (setQuant(quant - 1)) : (selecionarPedido))}>-</span> <span>{quant}</span> <span onClick={() => (setQuant(quant + 1))}><strong> +</strong></span>
+                    <span className="diminuir-quantidade" onClick={() => (quant > 1 ? (setQuant(quant - 1)) : (selecionarPedido))}>-</span> <span>{quant}</span> <span onClick={() => (setQuant(quant + 1), aumentarQuantidade(produto))}><strong> +</strong></span>
                 </div>
             </div>              
         </div>

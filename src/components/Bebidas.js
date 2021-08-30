@@ -38,19 +38,24 @@ const bebidas = [
 export default function Bebidas({ bebidasPedidas, setBebidasPedidas, habilitarBotao }) {
 
     const [ bebidasSelecionadas, setBebidasSelecionadas ] = useState([]);
-    console.log(bebidasSelecionadas);
+    
     function listarPedido(produto) {
-        console.log(produto);
-        console.log(bebidasSelecionadas);
         if (!(bebidasSelecionadas.find((prod) => (prod.nome === produto.nome)))) {
             setBebidasSelecionadas([...bebidasSelecionadas, produto]);
+        }   
+    }
+
+    function aumentarQuantidade(produto) {
+        if (bebidasSelecionadas.find((prod) => (prod.nome === produto.nome))){
+            bebidasSelecionadas.find((prod) => {
+                if (prod.nome === produto.nome) {
+                    prod.quant = produto.quant + 1;
+                }
+            })
         }
-        
     }
 
     function removerPedido(produto) {
-        console.log(produto);
-        console.log(bebidasSelecionadas);
         setBebidasSelecionadas(bebidasSelecionadas.filter((prod) => prod.nome !== produto.nome));
     }
     modificarEstado()
@@ -64,7 +69,7 @@ export default function Bebidas({ bebidasPedidas, setBebidasPedidas, habilitarBo
         <div className="escolher-bebida">
             <h2>Agora, sua bebida</h2>
             <div className="cardapio">
-                {bebidas.map((bebida, index) => (<Cardapio key={index} srcImagem={bebida.srcImagem} nome={bebida.nome} descricao={bebida.descricao} valor={bebida.valor} listarPedido = {listarPedido} removerPedido = {removerPedido} />))}
+                {bebidas.map((bebida, index) => (<Cardapio key={index} srcImagem={bebida.srcImagem} nome={bebida.nome} descricao={bebida.descricao} valor={bebida.valor} listarPedido = {listarPedido} removerPedido = {removerPedido} aumentarQuantidade = {aumentarQuantidade} />))}
             </div>
         </div>
     )

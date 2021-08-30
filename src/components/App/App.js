@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-import PratosPrincipais from "./PratosPrincipais";
-import Bebidas from "./Bebidas";
-import Sobremesas from "./Sobremesas";
-import Rodape from "./Rodape";
-import FazerPedido from "./FazerPedido";
+import "./app.css"
+
+import PratosPrincipais from "../PratosPrincipais";
+import Bebidas from "../Bebidas";
+import Sobremesas from "../Sobremesas";
+import Rodape from "../Footer/Rodape";
 
 export default function App() {
 
@@ -20,7 +21,6 @@ export default function App() {
 
     function habilitarBotao() {
         if (pratosPedidos.length > 0 && bebidasPedidas.length > 0 && sobremesasPedidas.length > 0) {
-            console.log(pratosPedidos)
             setHabilitar("enable");
         } else {
             setHabilitar("disable");
@@ -44,23 +44,20 @@ export default function App() {
     }
 
     function fazerPedido() {
-        console.log("enable");
         p();
         b();
         s();
 
-        console.log(pedido.map((item) => (item.nome + "\n")))
         pedido.map((item) => (pedir += `${item.nome}  *(${item.quant}x)*\n`))
         pedido.forEach((item) => {
-            valorTotal += Number((item.valor).replace(',', '.'));
+            valorTotal += Number((item.valor).replace(',', '.')) * item.quant;
         });
+        valorTotal = valorTotal.toFixed(2);
         let linkEnvioWhats = encodeURIComponent((`*Pedido:*\n${pedir}*Total:* ${valorTotal}`))
         
-        console.log(linkEnvioWhats);
         //link para envio direto no WhatsApp com número fake
         window.location.href = "https://wa.me/1111111111111?text=" + linkEnvioWhats;
     }
-    console.log(pedido)
 
     return (
         <>
