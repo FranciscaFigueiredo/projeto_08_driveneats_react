@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 import Cardapio from "../shared/Cardapio";
 
 const bebidas = [
@@ -33,12 +35,36 @@ const bebidas = [
     }
 ];
 
-export default function Bebidas({ bebidasSelecionados, setBebidasSelecionados }) {
+export default function Bebidas({ bebidasPedidas, setBebidasPedidas, habilitarBotao }) {
+
+    const [ bebidasSelecionadas, setBebidasSelecionadas ] = useState([]);
+    console.log(bebidasSelecionadas);
+    function listarPedido(produto) {
+        console.log(produto);
+        console.log(bebidasSelecionadas);
+        if (!(bebidasSelecionadas.find((prod) => (prod.nome === produto.nome)))) {
+            setBebidasSelecionadas([...bebidasSelecionadas, produto]);
+        }
+        
+    }
+
+    function removerPedido(produto) {
+        console.log(produto);
+        console.log(bebidasSelecionadas);
+        setBebidasSelecionadas(bebidasSelecionadas.filter((prod) => prod.nome !== produto.nome));
+    }
+    modificarEstado()
+    
+    function modificarEstado() {
+        habilitarBotao();
+        setBebidasPedidas(bebidasSelecionadas);
+    }
+
     return (
-        <div class="escolher-bebida">
+        <div className="escolher-bebida">
             <h2>Agora, sua bebida</h2>
-            <div class="cardapio">
-                {bebidas.map((bebida) => (<Cardapio srcImagem={bebida.srcImagem} nome={bebida.nome} descricao={bebida.descricao} valor={bebida.valor}/>))}
+            <div className="cardapio">
+                {bebidas.map((bebida, index) => (<Cardapio key={index} srcImagem={bebida.srcImagem} nome={bebida.nome} descricao={bebida.descricao} valor={bebida.valor} listarPedido = {listarPedido} removerPedido = {removerPedido} />))}
             </div>
         </div>
     )

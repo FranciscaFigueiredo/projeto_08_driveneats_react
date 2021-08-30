@@ -35,25 +35,36 @@ const pratos = [
     }
 ];
 
-export default function PratosPrincipais() {
+export default function PratosPrincipais({pratosPedidos, setPratosPedidos, habilitarBotao}) {
     const [ pratosSelecionados, setPratosSelecionados ] = useState([]);
     console.log(pratosSelecionados);
     function listarPedido(produto) {
         console.log(produto);
         console.log(pratosSelecionados);
-
-        setPratosSelecionados([...pratosSelecionados, produto]);
+        if (!(pratosSelecionados.find((prod) => (prod.nome === produto.nome)))) {
+            setPratosSelecionados([...pratosSelecionados, produto]);
+        }
+        habilitarBotao();
     }
 
     function removerPedido(produto) {
         console.log(produto);
-        setPratosSelecionados(pratosSelecionados.filter((prod) => prod === produto));
+        console.log(pratosSelecionados);
+        setPratosSelecionados(pratosSelecionados.filter((prod) => prod.nome !== produto.nome));
+    }
+    console.log(pratosSelecionados);
+
+    modificarEstado()
+    
+    function modificarEstado() {
+        habilitarBotao();
+        setPratosPedidos(pratosSelecionados);
     }
 
     return (
         <div className="prato-principal">
             <h2>Primeiro, Seu prato</h2>
-            <div class="cardapio">
+            <div className="cardapio">
                 {pratos.map((prato, index) => (<Cardapio key={index} srcImagem={prato.srcImagem} nome={prato.nome} descricao={prato.descricao} valor={prato.valor} listarPedido = {listarPedido} removerPedido = {removerPedido} />))}
             </div>
         </div>

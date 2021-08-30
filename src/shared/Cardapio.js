@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// listarPedido, removerPedido
+
 export default function Cardapio({ index, srcImagem, nome, descricao, valor, listarPedido, removerPedido }) {
     const [classe, setClasse] = useState("escolher-pedido");
     const [quantidade, setQuantidade] = useState("setar-quantidade hidden");
@@ -15,17 +15,12 @@ export default function Cardapio({ index, srcImagem, nome, descricao, valor, lis
         if(classe === "escolher-pedido") {
             setClasse("escolher-pedido prato-selecionado");
             setQuantidade("setar-quantidade");
-            listarPedido(produto)
-            // setPratosSelecionados([...pratosSelecionados, {
-            //     nome,
-            //     valor
-            // }]),
-            // console.log(pratosSelecionados)
+            listarPedido(produto);
         } else {
             setClasse("escolher-pedido");
             setQuantidade("setar-quantidade hidden");
             setQuant(1);
-            removerPedido(produto)
+            removerPedido(produto);
         }
     }
 
@@ -39,7 +34,7 @@ export default function Cardapio({ index, srcImagem, nome, descricao, valor, lis
             <div className="rodape-alimento">
                 <p><span>R$ <span className="valor-prato">{valor}</span></span></p>
                 <div className={quantidade}>
-                    <span className="diminuir-quantidade" onClick={() => (quant > 1 ? (setQuant(quant - 1)) : (setClasse("escolher-pedido"), setQuantidade("setar-quantidade hidden")))}>-</span> <span>{quant}</span> <span onClick={() => (setQuant(quant + 1))}><strong> +</strong></span>
+                    <span className="diminuir-quantidade" onClick={() => (quant > 1 ? (setQuant(quant - 1)) : (selecionarPedido))}>-</span> <span>{quant}</span> <span onClick={() => (setQuant(quant + 1))}><strong> +</strong></span>
                 </div>
             </div>              
         </div>

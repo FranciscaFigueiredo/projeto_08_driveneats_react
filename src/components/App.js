@@ -3,33 +3,52 @@ import { useState } from "react";
 import PratosPrincipais from "./PratosPrincipais";
 import Bebidas from "./Bebidas";
 import Sobremesas from "./Sobremesas";
+import Rodape from "./Rodape";
 
 export default function App() {
 
-    // let valorTotal = 0;
+    let valorTotal = 0;
+    const [ pedido, setPedido ] =  useState([]);
+    const [ habilitar, setHabilitar ] = useState("disabled");
+    const [ pratosPedidos, setPratosPedidos ] = useState([]);
+    const [ bebidasPedidas, setBebidasPedidas ] = useState([]);
+    const [ sobremesasPedidas, setSobremesasPedidas] = useState([]);
 
-    // const pratosSelecionados = [];
-    // const bebidasSelecionados = [];
-    // const sobremesasSelecionados = [];
 
-    // const { pratosSelecionados, setPratosSelecionados } = useState([]);
-    const { bebidasSelecionados, setBebidasSelecionados } = useState([]);
-    const { sobremesasSelecionados, setSobremesasSelecionados } = useState([]);
 
-    // function listarPedido(produto) {
-    //     console.log(produto);
-    //     console.log(pratosSelecionados);
-    //     // setPratosSelecionados([...pratosSelecionados, produto]);
-    // }
-
-    // function removerPedido(produto) {
-    //     console.log(produto);
-    //     // setPratosSelecionados(pratosSelecionados.filter((prod) => prod === produto));
-    // }
-
-    function imprimir() {
-        console.log(imprimir)
+    function habilitarBotao() {
+        if (pratosPedidos.length > 0 && bebidasPedidas.length > 0 && sobremesasPedidas.length > 0) {
+            console.log(pratosPedidos)
+            setHabilitar("enable");
+        } else {
+            setHabilitar("disable");
+        }
     }
+
+    function p () {
+        pratosPedidos.forEach((prato) => {
+            pedido.push(prato)
+        });
+    }
+    function b () {
+        bebidasPedidas.forEach((bebida) => {
+            pedido.push(bebida)
+        });
+    }
+    function s () {
+        sobremesasPedidas.forEach((sobremesa) => {
+            pedido.push(sobremesa)
+        });
+    }
+
+    function fazerPedido() {
+        console.log("enable");
+        p();
+        b();
+        s();
+        console.log(pedido)
+    }
+    console.log(pedido)
 
     return (
         <>
@@ -40,15 +59,13 @@ export default function App() {
                 </div>
             </header>
 
-            <PratosPrincipais />
+            <PratosPrincipais pratosPedidos = {pratosPedidos} setPratosPedidos = {setPratosPedidos} habilitarBotao = {habilitarBotao} />
             
-            <Bebidas bebidasSelecionados = {bebidasSelecionados} setBebidasSelecionados = {setBebidasSelecionados} />
+            <Bebidas bebidasPedidas = {bebidasPedidas} setBebidasPedidas = {setBebidasPedidas} habilitarBotao = {habilitarBotao} />
             
-            <Sobremesas sobremesasSelecionados = {sobremesasSelecionados} setSobremesasSelecionados = {setSobremesasSelecionados} />
+            <Sobremesas sobremesasPedidas = {sobremesasPedidas} setSobremesasPedidas = {setSobremesasPedidas} habilitarBotao = {habilitarBotao} />
 
-            <footer>
-                <button class="fechar-pedido" type="submit" onClick={imprimir} disabled>Selecione os 3 itens para fechar o pedido</button>
-            </footer>
+            <Rodape habilitar = {habilitar} fazerPedido = {fazerPedido} />
         </>
     )
 }

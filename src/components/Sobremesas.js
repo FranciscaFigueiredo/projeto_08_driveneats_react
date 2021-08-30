@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 import Cardapio from "../shared/Cardapio";
 
 const sobremesas = [
@@ -33,12 +35,36 @@ const sobremesas = [
     }
 ];
 
-export default function Sobremesas({ sobremesasSelecionados, setSobremesasSelecionados }) {
+export default function Sobremesas({sobremesasPedidas, setSobremesasPedidas, habilitarBotao }) {
+
+    const [ sobremesasSelecionadas, setSobremesasSelecionadas ] = useState([]);
+    console.log(sobremesasSelecionadas);
+    function listarPedido(produto) {
+        console.log(produto);
+        console.log(sobremesasSelecionadas);
+        if (!(sobremesasSelecionadas.find((prod) => (prod.nome === produto.nome)))) {
+            setSobremesasSelecionadas([...sobremesasSelecionadas, produto]);
+        }
+    }
+
+    function removerPedido(produto) {
+        console.log(produto);
+        console.log(sobremesasSelecionadas);
+        setSobremesasSelecionadas(sobremesasSelecionadas.filter((prod) => prod.nome !== produto.nome));
+    }
+
+    modificarEstado()
+    
+    function modificarEstado() {
+        habilitarBotao();
+        setSobremesasPedidas(sobremesasSelecionadas);
+    }
+
     return (
-        <div class="escolher-sobremesa">
+        <div className="escolher-sobremesa">
             <h2>Por fim, sua sobremesa</h2>
-            <div class="cardapio">
-                {sobremesas.map((sobremesa) => (<Cardapio srcImagem={sobremesa.srcImagem} nome={sobremesa.nome} descricao={sobremesa.descricao} valor={sobremesa.valor}/>))}
+            <div className="cardapio">
+                {sobremesas.map((sobremesa, index) => (<Cardapio key={index} srcImagem={sobremesa.srcImagem} nome={sobremesa.nome} descricao={sobremesa.descricao} valor={sobremesa.valor} listarPedido = {listarPedido} removerPedido = {removerPedido} />))}
             </div>
         </div>
         
